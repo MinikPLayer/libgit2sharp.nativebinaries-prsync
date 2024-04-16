@@ -30,7 +30,7 @@ $x64Directory = Join-Path $projectDirectory "nuget.package\runtimes\win-x64\nati
 $arm64Directory = Join-Path $projectDirectory "nuget.package\runtimes\win-arm64\native"
 $hashFile = Join-Path $projectDirectory "nuget.package\libgit2\libgit2_hash.txt"
 $sha = Get-Content $hashFile 
-$binaryFilename = "git2-" + $sha.Substring(0,7)
+$binaryFilename = "libgit2"
 
 $build_tests = 'OFF'
 if ($test.IsPresent) { $build_tests = 'ON' }
