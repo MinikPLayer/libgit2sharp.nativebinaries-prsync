@@ -29,12 +29,12 @@ export _BINPATH=`pwd`
 cmake -DCMAKE_BUILD_TYPE:STRING=Release \
       -DBUILD_TESTS:BOOL=OFF \
       -DUSE_SSH=OFF \
-      -DLIBGIT2_FILENAME=git2-$SHORTSHA \
+      -DLIBGIT2_FILENAME=git2 \
       -DCMAKE_OSX_ARCHITECTURES=$OSXARCHITECTURE \
       -DUSE_HTTPS=$USEHTTPS \
       -DUSE_BUNDLED_ZLIB=ON \
       ..
-cmake --build .
+cmake --build . -j $(nproc --all)
 
 popd
 
@@ -49,7 +49,7 @@ else
     LIBEXT="so"
 fi
 
-rm -rf $PACKAGEPATH/$RID
-mkdir -p $PACKAGEPATH/$RID/native
+rm -rf $PACKAGEPATH/linux-$RID
+mkdir -p $PACKAGEPATH/linux-$RID/native
 
-cp libgit2/build/libgit2-$SHORTSHA.$LIBEXT $PACKAGEPATH/$RID/native
+cp libgit2/build/libgit2.$LIBEXT $PACKAGEPATH/linux-$RID/native
